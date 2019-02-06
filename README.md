@@ -1,2 +1,2 @@
 # api-load-tests-samples
-Samples of load tests for ASP.NET Core using different tools (JMeter, SoapUI etc.)
+Samples of load tests for ASP.NET Core using different tools (JMeter, SoapUI, Gatling)
