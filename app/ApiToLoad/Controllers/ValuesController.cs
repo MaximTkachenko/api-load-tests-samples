@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using ApiToLoad.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiToLoad.Controllers
@@ -10,36 +8,50 @@ namespace ApiToLoad.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly IDb _db;
+
+        public ValuesController(IDb db)
+        {
+            _db = db;
+        }
+
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            _db.Add(new Num { Id = Guid.NewGuid(), Name = "fsdfdsfsfs" });
+            return Ok(_db.GetAll());
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public IActionResult Get(Guid id)
         {
-            return "value";
+            return Ok(_db.Get(id));
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] string value)
         {
+            _db.Add(new Num { Id = Guid.NewGuid(), Name = value });
+            return Ok();
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(Guid id, [FromBody] string value)
         {
+            _db.Update(new Num { Id = id, Name = value });
+            return Ok();
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(Guid id)
         {
+            _db.Delete(id);
+            return Ok();
         }
     }
 }
