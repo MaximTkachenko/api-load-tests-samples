@@ -10,11 +10,12 @@ namespace ApiToLoad.Services
 {
     public class Db : IDb
     {
-        private readonly string _dbFileName;
+        private readonly string _connectionString;
 
         public Db()
         {
-            _dbFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"ApiToLoadDb.sqlite");
+            var dbFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"ApiToLoadDb.sqlite");
+            _connectionString = $"Data Source={dbFileName};Version=3;";
 
             using (var conn = GetConnection())
             {
@@ -68,7 +69,6 @@ create table if not exists Num
             }
         }
 
-        private IDbConnection GetConnection() =>
-            new SQLiteConnection($"Data Source={_dbFileName};Version=3;", true);
+        private IDbConnection GetConnection() => new SQLiteConnection(_connectionString, true);
     }
 }
