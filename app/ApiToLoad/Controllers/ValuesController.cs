@@ -19,7 +19,6 @@ namespace ApiToLoad.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            _db.Add(new Num { Id = Guid.NewGuid(), Name = "fsdfdsfsfs" });
             return Ok(_db.GetAll());
         }
 
@@ -32,17 +31,17 @@ namespace ApiToLoad.Controllers
 
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody] string value)
+        public IActionResult Post([FromBody] Num num)
         {
-            _db.Add(new Num { Id = Guid.NewGuid(), Name = value });
+            _db.Add(new Num { Id = Guid.NewGuid(), Name = num.Name });
             return Ok();
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public IActionResult Put(Guid id, [FromBody] string value)
+        public IActionResult Put(Guid id, [FromBody] Num num)
         {
-            _db.Update(new Num { Id = id, Name = value });
+            _db.Update(new Num { Id = id, Name = num.Name });
             return Ok();
         }
 

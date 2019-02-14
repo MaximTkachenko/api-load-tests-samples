@@ -1,0 +1,146 @@
+{
+	"info": {
+		"_postman_id": "c414994c-5902-45f4-a229-e2b4c57e8303",
+		"name": "ApiToLoad_Spec",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:61912/api/values",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "61912",
+					"path": [
+						"api",
+						"values"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get one",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:61912/api/values/62ec3c5e-37b0-45c0-9688-1df7d8095483",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "61912",
+					"path": [
+						"api",
+						"values",
+						"62ec3c5e-37b0-45c0-9688-1df7d8095483"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Name\": \"Maxim\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:61912/api/values",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "61912",
+					"path": [
+						"api",
+						"values"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Name\": \"new value\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:61912/api/values/62ec3c5e-37b0-45c0-9688-1df7d8095483",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "61912",
+					"path": [
+						"api",
+						"values",
+						"62ec3c5e-37b0-45c0-9688-1df7d8095483"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:61912/api/values/62ec3c5e-37b0-45c0-9688-1df7d8095483",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "61912",
+					"path": [
+						"api",
+						"values",
+						"62ec3c5e-37b0-45c0-9688-1df7d8095483"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

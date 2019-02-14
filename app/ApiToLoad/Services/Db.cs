@@ -65,7 +65,7 @@ create table if not exists Num
         {
             using (var conn = GetConnection())
             {
-                conn.Execute("delete Num where Id = @id", new { id });
+                conn.Execute("delete from Num where Id = @id", new { id });
             }
         }
 
