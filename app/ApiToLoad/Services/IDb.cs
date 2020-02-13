@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ApiToLoad.Services
 {
     public interface IDb
     {
-        IReadOnlyList<Num> GetAll();
-        Num Get(Guid id);
-        void Add(Num num);
-        void Update(Num num);
-        void Delete(Guid id);
+        Task<IReadOnlyList<Num>> GetAll();
+        Task<Num> Get(Guid id);
+        Task Add(Num num);
+        Task Update(Num num);
+        Task Delete(Guid id);
     }
 }

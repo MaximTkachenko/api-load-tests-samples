@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using ApiToLoad.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,39 +18,39 @@ namespace ApiToLoad.Controllers
 
         // GET api/values
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            return Ok(_db.GetAll());
+            return Ok(await _db.GetAll());
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public IActionResult Get(Guid id)
+        public async Task<IActionResult> Get(Guid id)
         {
-            return Ok(_db.Get(id));
+            return Ok(await _db.Get(id));
         }
 
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody] Num num)
+        public async Task<IActionResult> Post([FromBody] Num num)
         {
-            _db.Add(new Num { Id = Guid.NewGuid(), Name = num.Name });
+            await _db.Add(new Num { Id = Guid.NewGuid().ToString(), Name = num.Name });
             return Ok();
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public IActionResult Put(Guid id, [FromBody] Num num)
+        public async Task<IActionResult> Put(Guid id, [FromBody] Num num)
         {
-            _db.Update(new Num { Id = id, Name = num.Name });
+            await _db.Update(new Num { Id = id.ToString(), Name = num.Name });
             return Ok();
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            _db.Delete(id);
+            await _db.Delete(id);
             return Ok();
         }
     }

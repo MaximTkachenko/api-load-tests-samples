@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SQLite;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Dapper;
+using Microsoft.Data.Sqlite;
 
 namespace ApiToLoad.Services
 {
@@ -14,11 +15,12 @@ namespace ApiToLoad.Services
 
         public Db()
         {
-            var dbFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"ApiToLoadDb.sqlite");
-            _connectionString = $"Data Source={dbFileName};Version=3;";
+            var dbFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ApiToLoadDb.db");
+            _connectionString = $"Filename={dbFileName}";
 
             using (var conn = GetConnection())
             {
+                conn.Open();
                 conn.Execute(@"
 create table if not exists Num 
 (
@@ -29,46 +31,46 @@ create table if not exists Num
             }
         }
 
-        public IReadOnlyList<Num> GetAll()
+        public async Task<IReadOnlyList<Num>> GetAll()
         {
             using (var conn = GetConnection())
             {
-                return conn.Query<Num>("select * from Num").ToList();
+                return (await conn.QueryAsync<Num>("select * from Num")).ToList();
             }
         }
 
-        public Num Get(Guid id)
+        public async Task<Num> Get(Guid id)
         {
             using (var conn = GetConnection())
             {
-                return conn.QueryFirst<Num>("select * from Num where Id = @id", new { id });
+                return await conn.QueryFirstAsync<Num>("select * from Num where Id = @id", new { id });
             }
         }
 
-        public void Add(Num num)
+        public async Task Add(Num num)
         {
             using (var conn = GetConnection())
             {
-                conn.Execute("insert into Num values (@id, @name)", new { id = num.Id, name = num.Name });
+                await conn.ExecuteAsync("insert into Num values (@id, @name)", new { id = num.Id, name = num.Name });
             }
         }
 
-        public void Update(Num num)
+        public async Task Update(Num num)
         {
             using (var conn = GetConnection())
             {
-                conn.Execute("update Num set Name = @name where Id = @id", new { id = num.Id, name = num.Name });
+                await conn.ExecuteAsync("update Num set Name = @name where Id = @id", new { id = num.Id, name = num.Name });
             }
         }
 
-        public void Delete(Guid id)
+        public async Task Delete(Guid id)
         {
             using (var conn = GetConnection())
             {
-                conn.Execute("delete from Num where Id = @id", new { id });
+                await conn.ExecuteAsync("delete from Num where Id = @id", new { id });
             }
         }
 
-        private IDbConnection GetConnection() => new SQLiteConnection(_connectionString, true);
+        private IDbConnection GetConnection() => new SqliteConnection(_connectionString);
     }
 }
