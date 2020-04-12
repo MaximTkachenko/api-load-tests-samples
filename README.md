@@ -2,4 +2,7 @@
 
 Samples of load tests for ASP.NET Core using different tools (JMeter, SoapUI etc.)
 
-https://docs.microsoft.com/en-us/aspnet/core/test/load-tests?view=aspnetcore-3.1
+- implemenet endpoints with in-memory cache and redis cache
+- try throttling
+- docker resources limits
+- https://docs.microsoft.com/en-us/aspnet/core/test/load-tests?view=aspnetcore-3.1
