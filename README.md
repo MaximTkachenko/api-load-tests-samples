@@ -1,4 +1,4 @@
-# api-load-tests-samples
+# api-load-tests-samples [WIP]
 
 Samples of load tests for ASP.NET Core using different tools (JMeter, SoapUI, k6 etc.)
 
