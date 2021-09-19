@@ -11,3 +11,4 @@ Samples of load tests for ASP.NET Core using different tools (JMeter, SoapUI, k6
 - [yarp benchmarking](https://github.com/microsoft/reverse-proxy/tree/master/samples/BenchmarkApp)
 - [bombardier](https://github.com/codesenberg/bombardier)
 - k6
+- https://github.com/PragmaticFlow/NBomber
